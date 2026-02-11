@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Al Sadat Travels & Carvan Imam Hussain</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../Img/Logo.png">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JS -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+
+            <!-- Logo only -->
+            <div class="logo">
+                <a href="index.html">
+                    <img src="../Img/Logo.png" alt="Al Sadat Travels Logo">
+                </a>
+            </div>
+            <div class="burger" id="burger">
+             <span></span>
+             <span></span>
+             <span></span>
+            </div>
+
+
+            <!-- Navigation Links -->
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Flights</a>
+                <a href="#">Ziyarat Packages</a>
+                <a href="#">Carvan</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact</a>
+            </nav>
+
+            <!-- Call to Action -->
+            <div class="nav-btn">
+                <a href="#" id="bookNowBtn">Book Now</a>
+            </div>
+
+        </div>
+    </header>
+    <section class="hero">
+
+    <h1>Let’s Travel with Al Sadat</h1>
+    <p>Luxury Ziyarat & International Travel Experience</p>
+
+    <div class="slider">
+
+        <!-- Radio Buttons -->
+        <input type="radio" name="slider" id="s1">
+        <input type="radio" name="slider" id="s2">
+        <input type="radio" name="slider" id="s3" checked>
+        <input type="radio" name="slider" id="s4">
+        <input type="radio" name="slider" id="s5">
+
+        <div class="cards">
+
+            <label for="s1" class="card">
+                <img src="C:\Users\Admin\Desktop\Al Sadat Travels & Carvan Imam Hussain\Img\1.png">
+            </label>
+
+            <label for="s2" class="card">
+                <img src="C:\Users\Admin\Desktop\Al Sadat Travels & Carvan Imam Hussain\Img\Img2.png">
+            </label>
+
+            <label for="s3" class="card">
+                <img src="C:\Users\Admin\Desktop\Al Sadat Travels & Carvan Imam Hussain\Img\Img3.png">
+            </label>
+
+            <label for="s4" class="card">
+                <img src="C:\Users\Admin\Desktop\Al Sadat Travels & Carvan Imam Hussain\Img\Img4.png">
+            </label>
+
+            <label for="s5" class="card">
+                <img src="C:\Users\Admin\Desktop\Al Sadat Travels & Carvan Imam Hussain\Img\Img5.png">
+            </label>
+
+        </div>
+    </div>
+
+</section>
+<!-- BOOKING PANEL -->
+<section class="booking-panel">
+
+    <!-- Tabs -->
+    <div class="booking-tabs">
+        <div class="tab active" data-type="flight">
+            <span class="icon flight"></span> Flight
+        </div>
+        <div class="tab" data-type="groups">
+            <span class="icon group"></span> Groups
+        </div>
+        <div class="tab" data-type="umrah">
+            <span class="icon umrah"></span> Umrah
+        </div>
+        <div class="tab" data-type="hotel">
+            <span class="icon hotel"></span> Hotels
+        </div>
+        <div class="tab" data-type="holiday">
+            <span class="icon holiday"></span> Holidays
+        </div>
+        <div class="tab" data-type="visa">
+            <span class="icon visa"></span> Visas
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="booking-box">
+
+        <div class="trip-type">
+            <button class="active" data-trip="oneway">One Way</button>
+            <button data-trip="return">Return</button>
+            <button data-trip="multi">Multi-City</button>
+        </div>
+
+        <div class="search-fields">
+
+            <div class="field">
+                <span>FROM</span>
+                <input type="text" id="fromCity" value="Karachi" placeholder="Departure city">
+                <p>City / Airport</p>
+            </div>
+
+            <div class="swap" id="swapBtn">⇄</div>
+
+            <div class="field">
+                <span>TO</span>
+                <input type="text" id="toCity" value="Islamabad" placeholder="Destination city">
+                <p>City / Airport</p>
+            </div>
+
+            <div class="field">
+                <span>DATE</span>
+                <input type="date" id="travelDate">
+                <p>Journey Date</p>
+            </div>
+
+            <div class="field">
+                <span>TRAVELER</span>
+                <select id="traveler">
+                    <option value="1 Adult">1 Adult</option>
+                    <option value="2 Adults">2 Adults</option>
+                    <option value="1 Adult + 1 Child">1 Adult + 1 Child</option>
+                    <option value="2 Adults + 2 Kids">2 Adults + 2 Kids</option>
+                    <option value="Family">Family</option>
+                </select>
+                <p>Class: Economy</p>
+            </div>
+
+        </div>
+
+        <button class="search-btn" id="searchBtn">Show Fare</button>
+
+    </div>
+
+</section>
+
+
+
+
+</body>
+</html>

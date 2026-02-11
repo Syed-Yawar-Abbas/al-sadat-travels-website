@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "from": "Karachi",
+        "to": "Islamabad",
+        "date": "2023-12-01",
+        "price": 5000
+    },
+    {
+        "id": 2,
+        "from": "Lahore",
+        "to": "Dubai",
+        "date": "2023-12-05",
+        "price": 25000
+    },
+    {
+        "id": 3,
+        "from": "Islamabad",
+        "to": "London",
+        "date": "2023-12-10",
+        "price": 80000
+    }
+]

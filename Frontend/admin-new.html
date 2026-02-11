@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Sadat Travels - Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: rgba(12, 90, 42, 0.8);
+            --secondary-color: #99bca8;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --border-radius: 10px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-menu {
+            flex: 1;
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-menu ul {
+            list-style: none;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #555;
+            text-decoration: none;
+            transition: var(--transition);
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: rgba(153, 188, 168, 0.1);
+            color: var(--primary-color);
+            border-left-color: var(--primary-color);
+        }
+
+        .sidebar-menu i {
+            width: 25px;
+            font-size: 18px;
+            margin-right: 12px;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .logout-btn {
+            display: block;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+        }
+
+        .content-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-header h2 {
+            color: var(--primary-color);
+            font-size: 22px;
+        }
+
+        .section-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .table-container {
+            padding: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            color: white;
+        }
+
+        .action-btn.edit {
+            background-color: var(--warning-color);
+        }
+
+        .action-btn.delete {
+            background-color: var(--danger-color);
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #555;
+            transition: var(--transition);
+        }
+
+        .tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-container {
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(153, 188, 168, 0.2);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .status.active {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--success-color);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+            }
+
+            .sidebar-header h2, .sidebar-menu span {
+                display: none;
+            }
+
+            .sidebar-menu a {
+                justify-content: center;
+                padding: 15px;
+            }
+
+            .sidebar-menu i {
+                margin-right: 0;
+                font-size: 20px;
+            }
+
+            .main-content {
+                margin-left: 70px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Al Sadat Travels</h2>
+            <p>Admin Dashboard</p>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="#" class="active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+                <li><a href="#" data-section="flights"><i class="fas fa-plane"></i> <span>Flights</span></a></li>
+                <li><a href="#" data-section="groups"><i class="fas fa-user-friends"></i> <span>Groups</span></a></li>
+                <li><a href="#" data-section="umrah"><i class="fas fa-kaaba"></i> <span>Umrah</span></a></li>
+                <li><a href="#" data-section="hotels"><i class="fas fa-hotel"></i> <span>Hotels</span></a></li>
+                <li><a href="#" data-section="holidays"><i class="fas fa-umbrella-beach"></i> <span>Holidays</span></a></li>
+                <li><a href="#" data-section="visa"><i class="fas fa-passport"></i> <span>Visa Services</span></a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-footer">
+            <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Admin Dashboard</h1>
+        </div>
+
+        <!-- Dashboard Overview -->
+        <div class="content-section active-section" id="dashboard-section">
+            <div class="section-header">
+                <h2>Dashboard Overview</h2>
+            </div>
+            <div class="table-container">
+                <p>Welcome to the Admin Dashboard. Use the sidebar to manage different services.</p>
+            </div>
+        </div>
+
+        <!-- Flights Management -->
+        <div class="content-section" id="flights-section" style="display: none;">
+            <div class="section-header">
+                <h2>Flights Management</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="showAddForm('flights')"><i class="fas fa-plus"></i> Add Flight</button>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="all-flights">All Flights</button>
+                <button class="tab" data-tab="add-flight">Add New Flight</button>
+            </div>
+
+            <div class="tab-content active" id="all-flights">
+                <div class="table-container">
+                    <table id="flights-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Date</th>
+                                <th>Price</th>
+                                <th>Airline</th>
+                                <th>Class</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="flights-table-body">
+                            <div class="loading">Loading flights...</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="add-flight">
+                <div class="form-container">
+                    <form id="flight-form" onsubmit="addService(event, 'flights')">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="flight-from">From</label>
+                                <input type="text" id="flight-from" required placeholder="Karachi">
+                            </div>
+                            <div class="form-group">
+                                <label for="flight-to">To</label>
+                                <input type="text" id="flight-to" required placeholder="Islamabad">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="flight-date">Date</label>
+                                <input type="date" id="flight-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="flight-price">Price (PKR)</label>
+                                <input type="number" id="flight-price" required placeholder="5000">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="flight-airline">Airline</label>
+                                <input type="text" id="flight-airline" required placeholder="PIA">
+                            </div>
+                            <div class="form-group">
+                                <label for="flight-class">Class</label>
+                                <select id="flight-class" required>
+                                    <option value="Economy">Economy</option>
+                                    <option value="Business">Business</option>
+                                    <option value="First">First</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="cancelForm('flights')">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add Flight</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Groups Management -->
+        <div class="content-section" id="groups-section" style="display: none;">
+            <div class="section-header">
+                <h2>Groups Management</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="showAddForm('groups')"><i class="fas fa-plus"></i> Add Group</button>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="all-groups">All Groups</button>
+                <button class="tab" data-tab="add-group">Add New Group</button>
+            </div>
+
+            <div class="tab-content active" id="all-groups">
+                <div class="table-container">
+                    <table id="groups-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Destination</th>
+                                <th>Departure</th>
+                                <th>Return</th>
+                                <th>Price</th>
+                                <th>Capacity</th>
+                                <th>Available</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="groups-table-body">
+                            <div class="loading">Loading groups...</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="add-group">
+                <div class="form-container">
+                    <form id="group-form" onsubmit="addService(event, 'groups')">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="group-name">Group Name</label>
+                                <input type="text" id="group-name" required placeholder="Imam Hussain Ziyarat Group A">
+                            </div>
+                            <div class="form-group">
+                                <label for="group-destination">Destination</label>
+                                <input type="text" id="group-destination" required placeholder="Karbala, Iraq">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="group-departure">Departure Date</label>
+                                <input type="date" id="group-departure" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="group-return">Return Date</label>
+                                <input type="date" id="group-return" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="group-price">Price (PKR)</label>
+                                <input type="number" id="group-price" required placeholder="150000">
+                            </div>
+                            <div class="form-group">
+                                <label for="group-capacity">Capacity</label>
+                                <input type="number" id="group-capacity" required placeholder="50">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="group-description">Description</label>
+                            <textarea id="group-description" rows="4" placeholder="Group description and itinerary details"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="cancelForm('groups')">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add Group</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Umrah Management -->
+        <div class="content-section" id="umrah-section" style="display: none;">
+            <div class="section-header">
+                <h2>Umrah Packages Management</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="showAddForm('umrah')"><i class="fas fa-plus"></i> Add Package</button>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="all-umrah">All Packages</button>
+                <button class="tab" data-tab="add-umrah">Add New Package</button>
+            </div>
+
+            <div class="tab-content active" id="all-umrah">
+                <div class="table-container">
+                    <table id="umrah-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Duration</th>
+                                <th>Price</th>
+                                <th>Departure</th>
+                                <th>Includes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="umrah-table-body">
+                            <div class="loading">Loading umrah packages...</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="add-umrah">
+                <div class="form-container">
+                    <form id="umrah-form" onsubmit="addService(event, 'umrah')">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="umrah-name">Package Name</label>
+                                <input type="text" id="umrah-name" required placeholder="Premium Umrah Package">
+                            </div>
+                            <div class="form-group">
+                                <label for="umrah-duration">Duration</label>
+                                <input type="text" id="umrah-duration" required placeholder="21 days">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="umrah-price">Price (PKR)</label>
+                                <input type="number" id="umrah-price" required placeholder="200000">
+                            </div>
+                            <div class="form-group">
+                                <label for="umrah-departure">Departure Date</label>
+                                <input type="date" id="umrah-departure" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="umrah-includes">Includes</label>
+                            <textarea id="umrah-includes" rows="3" placeholder="Flights, Hotels, Transport, Guide"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="umrah-description">Description</label>
+                            <textarea id="umrah-description" rows="4" placeholder="Detailed package description"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="cancelForm('umrah')">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add Package</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotels Management -->
+        <div class="content-section" id="hotels-section" style="display: none;">
+            <div class="section-header">
+                <h2>Hotels Management</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="showAddForm('hotels')"><i class="fas fa-plus"></i> Add Hotel</button>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="all-hotels">All Hotels</button>
+                <button class="tab" data-tab="add-hotel">Add New Hotel</button>
+            </div>
+
+            <div class="tab-content active" id="all-hotels">
+                <div class="table-container">
+                    <table id="hotels-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Location</th>
+                                <th>Stars</th>
+                                <th>Price/Night</th>
+                                <th>Amenities</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="hotels-table-body">
+                            <div class="loading">Loading hotels...</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="add-hotel">
+                <div class="form-container">
+                    <form id="hotel-form" onsubmit="addService(event, 'hotels')">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hotel-name">Hotel Name</label>
+                                <input type="text" id="hotel-name" required placeholder="Dar Al-Zahra Hotel">
+                            </div>
+                            <div class="form-group">
+                                <label for="hotel-location">Location</label>
+                                <input type="text" id="hotel-location" required placeholder="Karbala, Iraq">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hotel-stars">Stars</label>
+                                <select id="hotel-stars" required>
+                                    <option value="3">3 Stars</option>
+                                    <option value="4">4 Stars</option>
+                                    <option value="5">5 Stars</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="hotel-price">Price per Night (PKR)</label>
+                                <input type="number" id="hotel-price" required placeholder="5000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hotel-amenities">Amenities</label>
+                            <textarea id="hotel-amenities" rows="3" placeholder="WiFi, Restaurant, Prayer Room, etc."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hotel-description">Description</label>
+                            <textarea id="hotel-description" rows="4" placeholder="Hotel description and features"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="cancelForm('hotels')">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add Hotel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Holidays Management -->
+        <div class="content-section" id="holidays-section" style="display: none;">
+            <div class="section-header">
+                <h2>Holiday Packages Management</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="showAddForm('holidays')"><i class="fas fa-plus"></i> Add Package</button>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="all-holidays">All Packages</button>
+                <button class="tab" data-tab="add-holiday">Add New Package</button>
+            </div>
+
+            <div class="tab-content active" id="all-holidays">
+                <div class="table-container">
+                    <table id="holidays-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Destinations</th>
+                                <th>Duration</th>
+                                <th>Price</th>
+                                <th>Includes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="holidays-table-body">
+                            <div class="loading">Loading holiday packages...</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="add-holiday">
+                <div class="form-container">
+                    <form id="holiday-form" onsubmit="addService(event, 'holidays')">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="holiday-name">Package Name</label>
+                                <input type="text" id="holiday-name" required placeholder="Holy Cities Tour">
+                            </div>
+                            <div class="form-group">
+                                <label for="holiday-duration">Duration</label>
+                                <input type="text" id="holiday-duration" required placeholder="15 days">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="holiday-price">Price (PKR)</label>
+                                <input type="number" id="holiday-price" required placeholder="180000">
+                            </div>
+                            <div class="form-group">
+                                <label for="holiday-departure">Departure Date</label>
+                                <input type="date" id="holiday-departure" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="holiday-destinations">Destinations</label>
+                            <textarea id="holiday-destinations" rows="2" placeholder="Mecca, Medina, Karbala"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="holiday-includes">Includes</label>
+                            <textarea id="holiday-includes" rows="3" placeholder="Flights, Hotels, Ziyarat, Transport"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="holiday-description">Description</label>
+                            <textarea id="holiday-description" rows="4" placeholder="Detailed package description"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="cancelForm('holidays')">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add Package</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Visa Services Management -->
+        <div class="content-section" id="visa-section" style="display: none;">
+            <div class="section-header">
+                <h2>Visa Services Management</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="showAddForm('visas')"><i class="fas fa-plus"></i> Add Visa Service</button>
+                </div>
+            </div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="all-visas">All Services</button>
+                <button class="tab" data-tab="add-visa">Add New Service</button>
+            </div>
+
+            <div class="tab-content active" id="all-visas">
+                <div class="table-container">
+                    <table id="visas-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Country</th>
+                                <th>Type</th>
+                                <th>Processing Time</th>
+                                <th>Price</th>
+                                <th>Requirements</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="visas-table-body">
+                            <div class="loading">Loading visa services...</div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-content" id="add-visa">
+                <div class="form-container">
+                    <form id="visa-form" onsubmit="addService(event, 'visas')">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="visa-country">Country</label>
+                                <input type="text" id="visa-country" required placeholder="Saudi Arabia">
+                            </div>
+                            <div class="form-group">
+                                <label for="visa-type">Visa Type</label>
+                                <input type="text" id="visa-type" required placeholder="Umrah Visa">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="visa-processing">Processing Time</label>
+                                <input type="text" id="visa-processing" required placeholder="7-10 days">
+                            </div>
+                            <div class="form-group">
+                                <label for="visa-price">Price (PKR)</label>
+                                <input type="number" id="visa-price" required placeholder="15000">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visa-requirements">Requirements</label>
+                            <textarea id="visa-requirements" rows="4" placeholder="Passport, Photos, Application Form, etc."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="visa-description">Description</label>
+                            <textarea id="visa-description" rows="3" placeholder="Visa service description and process details"></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="cancelForm('visas')">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Add Service</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if admin is logged in
+        const userData = localStorage.getItem('user');
+        if (!userData || !JSON.parse(userData).isAdmin) {
+            window.location.href = 'reg.html';
+        }
+
+        // Sidebar navigation
+        document.querySelectorAll('.sidebar-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('data-section') + '-section';
+
+                // Update active link
+                document.querySelectorAll('.sidebar-menu a').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                // Show corresponding section
+                document.querySelectorAll('.content-section').forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+            });
+        });
+
+        // Tab switching
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('tab')) {
+                const tabId = e.target.getAttribute('data-tab');
+                const section = e.target.closest('.content-section');
+
+                // Update active tab
+                section.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+
+                // Show corresponding tab content
+                section.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+
+                const targetContent = document.getElementById(tabId);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            }
+        });
+
+        // Load services data
+        function loadServices() {
+            fetch('http://localhost:3000/api/services')
+                .then(response => response.json())
+                .then(data => {
+                    displayFlights(data.flights || []);
+                    displayGroups(data.groups || []);
+                    displayUmrah(data.umrah || []);
+                    displayHotels(data.hotels || []);
+                    displayHolidays(data.holidays || []);
+                    displayVisas(data.visas || []);
+                })
+                .catch(error => {
+                    console.error('Error loading services:', error);
+                });
+        }
+
+        // Display functions for each service type
+        function displayFlights(flights) {
+            const tbody = document.getElementById('flights-table-body');
+            tbody.innerHTML = '';
+
+            if (flights.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 40px; color: #777;">No flights found. Add your first flight!</td></tr>';
+                return;
+            }
+
+            flights.forEach(flight => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${flight.id}</td>
+                    <td>${flight.from}</td>
+                    <td>${flight.to}</td>
+                    <td>${flight.date}</td>
+                    <td>PKR ${flight.price?.toLocaleString() || 'N/A'}</td>
+                    <td>${flight.airline || 'N/A'}</td>
+                    <td>${flight.class || 'Economy'}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit" onclick="editService('flights', ${flight.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteService('flights', ${flight.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function displayGroups(groups) {
+            const tbody = document.getElementById('groups-table-body');
+            tbody.innerHTML = '';
+
+            if (groups.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 40px; color: #777;">No groups found. Add your first group!</td></tr>';
+                return;
+            }
+
+            groups.forEach(group => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${group.id}</td>
+                    <td>${group.name}</td>
+                    <td>${group.destination}</td>
+                    <td>${group.departureDate}</td>
+                    <td>${group.returnDate}</td>
+                    <td>PKR ${group.price?.toLocaleString() || 'N/A'}</td>
+                    <td>${group.capacity || 'N/A'}</td>
+                    <td>${(group.capacity - (group.booked || 0)) || group.capacity || 'N/A'}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit" onclick="editService('groups', ${group.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteService('groups', ${group.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function displayUmrah(umrah) {
+            const tbody = document.getElementById('umrah-table-body');
+            tbody.innerHTML = '';
+
+            if (umrah.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 40px; color: #777;">No umrah packages found. Add your first package!</td></tr>';
+                return;
+            }
+
+            umrah.forEach(pkg => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${pkg.id}</td>
+                    <td>${pkg.package || pkg.name}</td>
+                    <td>${pkg.duration}</td>
+                    <td>PKR ${pkg.price?.toLocaleString() || 'N/A'}</td>
+                    <td>${pkg.departureDate}</td>
+                    <td>${pkg.includes}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn edit" onclick="editService('umrah', ${pkg.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn delete" onclick="deleteService('umrah', ${pkg.id})">
+                                <

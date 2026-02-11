@@ -1,0 +1,74 @@
+{
+  "flights": [
+    {
+      "id": 1,
+      "from": "Karachi",
+      "to": "Islamabad",
+      "date": "2024-12-01",
+      "price": 5000,
+      "airline": "PIA",
+      "class": "Economy"
+    },
+    {
+      "id": 2,
+      "from": "Lahore",
+      "to": "Dubai",
+      "date": "2024-12-05",
+      "price": 25000,
+      "airline": "Emirates",
+      "class": "Business"
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "name": "Imam Hussain Ziyarat Group A",
+      "destination": "Karbala",
+      "departureDate": "2024-12-15",
+      "returnDate": "2024-12-25",
+      "price": 150000,
+      "capacity": 50,
+      "available": 45
+    }
+  ],
+  "umrah": [
+    {
+      "id": 1,
+      "package": "Premium Umrah Package",
+      "duration": "21 days",
+      "price": 200000,
+      "includes": ["Flights", "Hotels", "Transport", "Guide"],
+      "departureDate": "2024-12-20"
+    }
+  ],
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Dar Al-Zahra Hotel",
+      "location": "Karbala",
+      "stars": 5,
+      "pricePerNight": 5000,
+      "amenities": ["WiFi", "Restaurant", "Prayer Room"]
+    }
+  ],
+  "holidays": [
+    {
+      "id": 1,
+      "package": "Holy Cities Tour",
+      "destinations": ["Mecca", "Medina", "Karbala"],
+      "duration": "15 days",
+      "price": 180000,
+      "includes": ["Flights", "Hotels", "Ziyarat"]
+    }
+  ],
+  "visas": [
+    {
+      "id": 1,
+      "country": "Saudi Arabia",
+      "type": "Umrah Visa",
+      "processingTime": "7-10 days",
+      "price": 15000,
+      "requirements": ["Passport", "Photos", "Application Form"]
+    }
+  ]
+}

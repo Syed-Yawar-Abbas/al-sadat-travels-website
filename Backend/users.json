@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Admin",
+    "email": "admin@sadat.com",
+    "phone": "",
+    "password": "$2b$10$KwAHs94Ado.yxSyC4ob6..LbIBis45GC3BoHZh2QxYM9n2zxB.Pk6",
+    "isAdmin": true
+  },
+  {
+    "id": 2,
+    "name": "User One",
+    "email": "user1@example.com",
+    "phone": "1234567890",
+    "password": "$2b$10$KwAHs94Ado.yxSyC4ob6..LbIBis45GC3BoHZh2QxYM9n2zxB.Pk6",
+    "isAdmin": false
+  },
+  {
+    "id": 3,
+    "name": "Syed Yawar Abbas",
+    "email": "syed.yawar.abbasx@gmail.com",
+    "phone": "+923121930919",
+    "password": "$2b$10$ibzYyBVOBKLDWHZ3fzNB8egAGBiW2vIgWXa1qtCh9aDMChLsxJKQ6",
+    "isAdmin": false
+  }
+]

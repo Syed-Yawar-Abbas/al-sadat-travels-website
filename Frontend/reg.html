@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Sadat Travels & Carvan - Account</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-image: linear-gradient(to bottom right, #f0f4f8, #e1e8f0);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        .panel {
+            flex: 1;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left-panel {
+            background-color: rgba(12, 90, 42, 0.6);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .right-panel {
+            background-color: white;
+            position: relative;
+        }
+
+        .logo-container {
+            margin-bottom: 40px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-box {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .logo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .logo-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #0c5a2a;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .logo-fallback i {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: white;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .company-tagline {
+            font-size: 16px;
+            font-weight: 300;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .form-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-header h2 {
+            color: #0c5a2a;
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .input-group {
+            margin-bottom: 22px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #99bca8;
+            box-shadow: 0 0 0 3px rgba(153, 188, 168, 0.2);
+        }
+
+        .input-group i {
+            position: absolute;
+            right: 15px;
+            top: 42px;
+            color: #999;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+            accent-color: rgba(12, 90, 42, 0.8);
+        }
+
+        .forgot-password {
+            color: #0c5a2a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background-color: rgba(12, 90, 42, 0.8);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .btn:hover {
+            background-color: rgba(12, 90, 42, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(12, 90, 42, 0.2);
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 15px;
+            color: #666;
+        }
+
+        .toggle-form a {
+            color: #0c5a2a;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        .toggle-form a:hover {
+            text-decoration: underline;
+        }
+
+        .social-login {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-login p {
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .social-login p::before, .social-login p::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background-color: #eee;
+        }
+
+        .social-login p::before {
+            left: 0;
+        }
+
+        .social-login p::after {
+            right: 0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+
+        .facebook {
+            background-color: #3b5998;
+        }
+
+        .google {
+            background-color: #dd4b39;
+        }
+
+        .twitter {
+            background-color: #1da1f2;
+        }
+
+        .info-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 40px;
+            border-left: 4px solid #99bca8;
+            text-align: left;
+        }
+
+        .info-box h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .info-box p {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .separator {
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 30px 0;
+            width: 100%;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                max-width: 500px;
+            }
+            
+            .left-panel {
+                padding: 40px 30px;
+            }
+            
+            .logo-box {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .panel {
+                padding: 30px 25px;
+            }
+            
+            .logo-box {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .company-name {
+                font-size: 24px;
+            }
+            
+            .form-header h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Panel with Logo and Info -->
+        <div class="panel left-panel">
+            <div class="logo-container">
+                <div class="logo-box">
+                    <!-- Trying to load the logo from the specified path -->
+                    <img id="companyLogo" class="logo" src="file:///C:/Users/Admin/Desktop/Al%20Sadat%20Travels%20&%20Carvan%20Imam%20Hussain/Img/Logo.png" alt="Al Sadat Travels & Carvan Logo">
+                    <!-- Fallback in case image doesn't load -->
+                    
+                </div>
+                <h1 class="company-name">Al Sadat Travels & Carvan</h1>
+                <p class="company-tagline">Journey to Imam Hussain with Faith and Comfort</p>
+            </div>
+            
+            <div class="separator"></div>
+            
+            <div class="info-box">
+                <h3>Why Create an Account?</h3>
+                <p>With an account, you can manage your bookings, save travel preferences, get exclusive offers, and track your pilgrimage journey.</p>
+            </div>
+        </div>
+        
+        <!-- Right Panel with Forms -->
+        <div class="panel right-panel">
+            <div class="form-container">
+                <!-- Sign In Form -->
+                <div class="form active" id="signin-form">
+                    <div class="form-header">
+                        <h2>Welcome Back</h2>
+                        <p>Sign in to your account to continue your journey</p>
+                    </div>
+                    
+                    <form id="signinForm">
+                        <div class="input-group">
+                            <label for="signin-email">Email Address</label>
+                            <input type="email" id="signin-email" required placeholder="Enter your email">
+                            <i class="fas fa-envelope"></i>
+                            <div class="error-message" id="signin-email-error">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="signin-password">Password</label>
+                            <input type="password" id="signin-password" required placeholder="Enter your password">
+                            <i class="fas fa-lock"></i>
+                            <div class="error-message" id="signin-password-error">Password must be at least 6 characters</div>
+                        </div>
+                        
+                        <div class="remember-forgot">
+                            <div class="remember-me">
+                                <input type="checkbox" id="remember-me">
+                                <label for="remember-me">Remember me</label>
+                            </div>
+                            <a href="#" class="forgot-password">Forgot Password?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn">Sign In</button>
+                    </form>
+                    
+                    <div class="toggle-form">
+                        Don't have an account? <a href="#" id="show-signup">Sign Up</a>
+                    </div>
+                    
+                    <div class="social-login">
+                        <p>Or sign in with</p>
+                        <div class="social-icons">
+                            <div class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+                            <div class="social-icon google">
+                                <i class="fab fa-google"></i>
+                            </div>
+                            <div class="social-icon twitter">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sign Up Form -->
+                <div class="form" id="signup-form">
+                    <div class="form-header">
+                        <h2>Create Account</h2>
+                        <p>Join us for a blessed journey to Imam Hussain</p>
+                    </div>
+                    
+                    <form id="signupForm">
+                        <div class="input-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" required placeholder="Enter your full name">
+                            <i class="fas fa-user"></i>
+                            <div class="error-message" id="signup-name-error">Please enter your full name</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="signup-email">Email Address</label>
+                            <input type="email" id="signup-email" required placeholder="Enter your email">
+                            <i class="fas fa-envelope"></i>
+                            <div class="error-message" id="signup-email-error">Please enter a valid email address</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="signup-phone">Phone Number</label>
+                            <input type="tel" id="signup-phone" required placeholder="Enter your phone number">
+                            <i class="fas fa-phone"></i>
+                            <div class="error-message" id="signup-phone-error">Please enter a valid phone number</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" required placeholder="Create a password">
+                            <i class="fas fa-lock"></i>
+                            <div class="error-message" id="signup-password-error">Password must be at least 8 characters with letters and numbers</div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="signup-confirm-password">Confirm Password</label>
+                            <input type="password" id="signup-confirm-password" required placeholder="Confirm your password">
+                            <i class="fas fa-lock"></i>
+                            <div class="error-message" id="signup-confirm-password-error">Passwords do not match</div>
+                        </div>
+                        
+                        <button type="submit" class="btn">Create Account</button>
+                    </form>
+                    
+                    <div class="toggle-form">
+                        Already have an account? <a href="#" id="show-signin">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const signinForm = document.getElementById('signin-form');
+        const signupForm = document.getElementById('signup-form');
+        const showSignupBtn = document.getElementById('show-signup');
+        const showSigninBtn = document.getElementById('show-signin');
+        const companyLogo = document.getElementById('companyLogo');
+        const logoFallback = document.getElementById('logoFallback');
+        
+        // Toggle between Sign In and Sign Up forms
+        showSignupBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            signinForm.classList.remove('active');
+            signupForm.classList.add('active');
+        });
+        
+        showSigninBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            signupForm.classList.remove('active');
+            signinForm.classList.add('active');
+        });
+        
+        // Fix for logo centering - ensure it's properly centered
+        function centerLogo() {
+            const logoBox = document.querySelector('.logo-box');
+            const logo = document.getElementById('companyLogo');
+            
+            // Make sure logo takes full container
+            logo.style.display = 'block';
+            logo.style.margin = '0 auto';
+            logo.style.maxWidth = '100%';
+            logo.style.maxHeight = '100%';
+            
+            // Center fallback as well
+            if (logoFallback) {
+                logoFallback.style.display = 'flex';
+                logoFallback.style.justifyContent = 'center';
+                logoFallback.style.alignItems = 'center';
+            }
+        }
+        
+        // Check if logo loaded successfully, show fallback if not
+        companyLogo.onload = function() {
+            centerLogo();
+        };
+        
+        companyLogo.onerror = function() {
+            companyLogo.style.display = 'none';
+            logoFallback.style.display = 'flex';
+            centerLogo();
+        };
+        
+        // Form Validation Functions
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+        
+        function validatePassword(password) {
+            // At least 6 characters for sign in
+            return password.length >= 6;
+        }
+        
+        function validateSignupPassword(password) {
+            // At least 8 characters with letters and numbers for sign up
+            const hasLetter = /[a-zA-Z]/.test(password);
+            const hasNumber = /\d/.test(password);
+            return password.length >= 8 && hasLetter && hasNumber;
+        }
+        
+        function validatePhone(phone) {
+            // Basic phone validation
+            const re = /^[\+]?[1-9][\d]{0,15}$/;
+            return re.test(String(phone).replace(/[\s\-\(\)]/g, ''));
+        }
+        
+        // Sign In Form Submission
+        document.getElementById('signinForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('signin-email').value;
+            const password = document.getElementById('signin-password').value;
+            let isValid = true;
+
+            // Reset error messages
+            document.getElementById('signin-email-error').classList.remove('show');
+            document.getElementById('signin-password-error').classList.remove('show');
+
+            // Validate email
+            if (!validateEmail(email)) {
+                document.getElementById('signin-email-error').classList.add('show');
+                isValid = false;
+            }
+
+            // Validate password
+            if (!validatePassword(password)) {
+                document.getElementById('signin-password-error').classList.add('show');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Send login request to backend
+                fetch('http://localhost:3000/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Store user data in localStorage
+                        localStorage.setItem('user', JSON.stringify(data.user));
+                        localStorage.setItem('token', data.token);
+
+                        // Redirect based on user role
+                        if (data.user.isAdmin) {
+                            window.location.href = 'admin.html';
+                        } else {
+                            window.location.href = 'index.html';
+                        }
+                    } else {
+                        alert('Invalid credentials. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Login failed. Please try again.');
+                });
+            }
+        });
+        
+        // Sign Up Form Submission
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const phone = document.getElementById('signup-phone').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            let isValid = true;
+
+            // Reset error messages
+            document.getElementById('signup-name-error').classList.remove('show');
+            document.getElementById('signup-email-error').classList.remove('show');
+            document.getElementById('signup-phone-error').classList.remove('show');
+            document.getElementById('signup-password-error').classList.remove('show');
+            document.getElementById('signup-confirm-password-error').classList.remove('show');
+
+            // Validate name
+            if (name.trim().length < 2) {
+                document.getElementById('signup-name-error').classList.add('show');
+                isValid = false;
+            }
+
+            // Validate email
+            if (!validateEmail(email)) {
+                document.getElementById('signup-email-error').classList.add('show');
+                isValid = false;
+            }
+
+            // Validate phone
+            if (!validatePhone(phone)) {
+                document.getElementById('signup-phone-error').classList.add('show');
+                isValid = false;
+            }
+
+            // Validate password
+            if (!validateSignupPassword(password)) {
+                document.getElementById('signup-password-error').classList.add('show');
+                isValid = false;
+            }
+
+            // Validate password confirmation
+            if (password !== confirmPassword) {
+                document.getElementById('signup-confirm-password-error').classList.add('show');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Send registration request to backend
+                fetch('http://localhost:3000/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, phone, password }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`Account created successfully! Welcome to Al Sadat Travels, ${name}. Please sign in.`);
+                        // Switch to sign in form
+                        signupForm.classList.remove('active');
+                        signinForm.classList.add('active');
+                        // Reset form
+                        this.reset();
+                    } else {
+                        alert('Registration failed: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Registration failed. Please try again.');
+                });
+            }
+        });
+        
+        // Forgot Password Link
+        document.querySelector('.forgot-password').addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = prompt('Please enter your email address to reset your password:');
+            if (email && validateEmail(email)) {
+                alert(`Password reset instructions have been sent to ${email}`);
+            } else if (email) {
+                alert('Please enter a valid email address.');
+            }
+        });
+        
+        // Social Media Button Interactions
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const platform = this.classList.contains('facebook') ? 'Facebook' :
+                               this.classList.contains('google') ? 'Google' : 'Twitter';
+                alert(`You chose to sign in with ${platform}. This would redirect to ${platform} authentication in a real application.`);
+            });
+        });
+        
+        // Center logo on page load
+        window.addEventListener('load', function() {
+            centerLogo();
+            
+            // If logo hasn't loaded after 1 second, show fallback
+            setTimeout(() => {
+                if (companyLogo.complete && companyLogo.naturalHeight === 0) {
+                    companyLogo.style.display = 'none';
+                    logoFallback.style.display = 'flex';
+                    centerLogo();
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
