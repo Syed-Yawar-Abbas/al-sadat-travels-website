@@ -896,3 +896,1091 @@ body {
     margin: 5px 0;
 }
 }
+
+/* ============ GROUPS TAB FIELDS - PREMIUM EDITION 2026 ============ */
+/* Colors: #0c5a2a, #99bca8, #e6eee9 */
+/* Added: Advanced Transitions & Interactions */
+/* ================================================================= */
+
+/* Main Container - Glassmorphism Premium */
+.groups-search-fields {
+    width: 100%;
+    padding: 30px 25px;
+    background: linear-gradient(145deg, #ffffff, #f0f7f2);
+    border-radius: 24px;
+    margin-top: 25px;
+    border: 1px solid rgba(12, 90, 42, 0.12);
+    box-shadow: 
+        0 10px 30px -8px rgba(12, 90, 42, 0.1),
+        inset 0 1px 4px rgba(255, 255, 255, 0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle Green Glow Effect on Hover */
+.groups-search-fields:hover {
+    border-color: rgba(12, 90, 42, 0.3);
+    box-shadow: 
+        0 20px 40px -12px rgba(12, 90, 42, 0.25),
+        inset 0 1px 6px rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+}
+
+/* Animated Gradient Border */
+.groups-search-fields::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(153, 188, 168, 0.3) 50%, 
+        transparent 70%);
+    border-radius: 26px;
+    z-index: -1;
+    animation: borderGlow 4s infinite linear;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.groups-search-fields:hover::before {
+    opacity: 1;
+}
+
+@keyframes borderGlow {
+    0% { transform: translateX(-100%) rotate(0deg); }
+    100% { transform: translateX(100%) rotate(0deg); }
+}
+
+/* Groups Row - Flex with Stagger Animation */
+.groups-row {
+    display: flex;
+    gap: 22px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+    animation: slideUpFade 0.6s ease-out;
+}
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Individual Field - Premium Card Style */
+.groups-row .field {
+    flex: 1;
+    min-width: 200px;
+    background: white;
+    padding: 16px 20px;
+    border-radius: 18px;
+    border: 1.5px solid rgba(153, 188, 168, 0.5);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+/* Stagger Children Animation */
+.groups-row .field:nth-child(1) { animation: cardPop 0.5s 0.1s both; }
+.groups-row .field:nth-child(2) { animation: cardPop 0.5s 0.2s both; }
+.groups-row .field:nth-child(3) { animation: cardPop 0.5s 0.3s both; }
+
+@keyframes cardPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Ripple Effect on Hover */
+.groups-row .field::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(12, 90, 42, 0.05);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: 0;
+}
+
+.groups-row .field:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Field Hover State - Premium Green */
+.groups-row .field:hover {
+    border-color: #0c5a2a;
+    background: linear-gradient(145deg, #ffffff, #f8fff9);
+    box-shadow: 
+        0 12px 24px -10px rgba(12, 90, 42, 0.25),
+        0 0 0 3px rgba(153, 188, 168, 0.15);
+    transform: translateY(-3px) scale(1.01);
+}
+
+/* Field Focus State */
+.groups-row .field:focus-within {
+    border-color: #0c5a2a;
+    border-width: 2px;
+    box-shadow: 
+        0 0 0 4px rgba(12, 90, 42, 0.1),
+        0 8px 20px -8px rgba(12, 90, 42, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Label - Animated Underline */
+.groups-row .field span {
+    display: block;
+    font-size: 11px;
+    color: #0c5a2a;
+    margin-bottom: 8px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.groups-row .field span::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #0c5a2a, #99bca8);
+    transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.groups-row .field:hover span::after,
+.groups-row .field:focus-within span::after {
+    width: 30px;
+}
+
+/* Select Dropdowns - Smooth Transitions */
+.groups-row select {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0c5a2a;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.25s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.groups-row select:hover {
+    padding-left: 5px;
+    color: #063a1d;
+}
+
+/* Date Input - Smooth */
+.groups-row input[type="date"] {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0c5a2a;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.25s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.groups-row input[type="date"]:hover {
+    padding-left: 5px;
+    color: #063a1d;
+}
+
+/* Helper Text - Smooth Fade */
+.groups-row .field p {
+    margin: 10px 0 0 0;
+    font-size: 10px;
+    color: #6c757d;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    position: relative;
+    z-index: 2;
+}
+
+.groups-row .field:hover p,
+.groups-row .field:focus-within p {
+    color: #0c5a2a;
+    opacity: 1;
+    letter-spacing: 1.5px;
+}
+
+/* Custom Dropdown Arrow - Animated */
+.groups-row select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230c5a2a'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+    background-size: 22px;
+    transition: background-position 0.3s ease, background-image 0.3s ease;
+}
+
+.groups-row select:hover {
+    background-position: right 5px center;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23063a1d'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+}
+
+/* Calendar Icon - Animated */
+.groups-row input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    color: #0c5a2a;
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(95deg);
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.groups-row input[type="date"]:hover::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+    filter: invert(30%) sepia(100%) saturate(800%) hue-rotate(95deg);
+}
+
+/* ============ ENHANCED TAB TRANSITIONS ============ */
+
+/* Tab Hover Effects */
+.tab {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tab:hover {
+    color: #0c5a2a;
+    transform: translateY(-2px);
+}
+
+.tab::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: #0c5a2a;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.tab:hover::before {
+    width: 70%;
+}
+
+.tab.active::before {
+    width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Icon Animations */
+.icon {
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.tab:hover .icon {
+    transform: scale(1.15) rotate(3deg);
+}
+
+.tab.active .icon {
+    transform: scale(1.1);
+}
+
+/* ============ SEARCH BUTTON PREMIUM ============ */
+
+.search-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1;
+}
+
+.search-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    z-index: -1;
+}
+
+.search-btn:hover::before {
+    width: 400px;
+    height: 400px;
+}
+
+.search-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 15px 30px -8px rgba(12, 90, 42, 0.4),
+        0 0 0 2px rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+}
+
+.search-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* Pulse Animation for Active Tab */
+@keyframes subtlePulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(12, 90, 42, 0.1);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(12, 90, 42, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(12, 90, 42, 0);
+    }
+}
+
+.tab.active {
+    animation: subtlePulse 2.5s infinite;
+    font-weight: 600;
+}
+
+/* ============ FIELD ENTRY ANIMATIONS ============ */
+
+/* Staggered Entry for All Fields */
+.groups-search-fields .groups-row:first-child .field {
+    animation: slideInField 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    opacity: 0;
+}
+
+.groups-search-fields .groups-row:first-child .field:nth-child(1) { animation-delay: 0.1s; }
+.groups-search-fields .groups-row:first-child .field:nth-child(2) { animation-delay: 0.2s; }
+.groups-search-fields .groups-row:first-child .field:nth-child(3) { animation-delay: 0.3s; }
+
+.groups-search-fields .groups-row:last-child .field {
+    animation: slideInField 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    opacity: 0;
+}
+
+.groups-search-fields .groups-row:last-child .field:nth-child(1) { animation-delay: 0.4s; }
+.groups-search-fields .groups-row:last-child .field:nth-child(2) { animation-delay: 0.5s; }
+.groups-search-fields .groups-row:last-child .field:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes slideInField {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ============ RESPONSIVE TOUCH IMPROVEMENTS ============ */
+
+@media (max-width: 768px) {
+    .groups-search-fields {
+        padding: 22px 18px;
+        border-radius: 20px;
+    }
+    
+    .groups-row .field {
+        transition: all 0.25s ease;
+    }
+    
+    .groups-row .field:active {
+        transform: scale(0.98);
+        background: rgba(153, 188, 168, 0.1);
+    }
+    
+    /* Remove hover effects on mobile, use active instead */
+    .groups-row .field:hover {
+        transform: none;
+    }
+    
+    .groups-row .field:active {
+        border-color: #0c5a2a;
+        background: #f0f7f2;
+    }
+    
+    /* Better touch targets */
+    .groups-row select,
+    .groups-row input[type="date"] {
+        padding: 12px 0;
+        font-size: 16px;
+    }
+    
+    .search-btn {
+        padding: 16px 45px;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .search-btn:active {
+        transform: scale(0.96);
+        background: #063a1d;
+    }
+}
+
+/* ============ DARK MODE SUPPORT ============ */
+@media (prefers-color-scheme: dark) {
+    .groups-search-fields {
+        background: linear-gradient(145deg, #1a2a1a, #1e331e);
+        border-color: rgba(153, 188, 168, 0.2);
+    }
+    
+    .groups-row .field {
+        background: #253725;
+        border-color: rgba(153, 188, 168, 0.3);
+    }
+    
+    .groups-row select,
+    .groups-row input[type="date"] {
+        color: #99bca8;
+    }
+    
+    .groups-row .field span {
+        color: #b8d9c4;
+    }
+}
+
+/* ============ PRINT STYLES ============ */
+@media print {
+    .groups-search-fields {
+        box-shadow: none;
+        border: 2px solid #0c5a2a;
+        background: white;
+    }
+    
+    .groups-row .field {
+        border: 1px solid #0c5a2a;
+        break-inside: avoid;
+    }
+}
+
+/* ============ GROUPS TAB STYLES END ============ */
+
+
+/* ============ UMRAH TAB - PREMIUM HOLY JOURNEY ============ */
+/* Inspired by Travelinks.pk, Ibneyousuf.com, Skypearltravels.com */
+/* Colors: #0c5a2a, #99bca8, #e6eee9, #C49A2B (Gold for Premium) */
+/* ========================================================= */
+
+/* Main Container - Premium Islamic Design */
+.umrah-search-fields {
+    width: 100%;
+    padding: 35px 30px;
+    background: linear-gradient(145deg, #ffffff, #f9fff9);
+    border-radius: 32px;
+    margin-top: 25px;
+    border: 1px solid rgba(12, 90, 42, 0.15);
+    box-shadow: 
+        0 20px 40px -12px rgba(12, 90, 42, 0.15),
+        inset 0 1px 4px rgba(255, 255, 255, 0.9);
+    position: relative;
+    overflow: hidden;
+    animation: umrahReveal 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Islamic Pattern Overlay - Very Subtle */
+.umrah-search-fields::before {
+    content: '🕋';
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 60px;
+    opacity: 0.03;
+    transform: rotate(-5deg);
+    color: #0c5a2a;
+}
+
+.umrah-search-fields::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, 
+        #99bca8 0%, 
+        #0c5a2a 50%, 
+        #C49A2B 100%);
+    border-radius: 4px 4px 0 0;
+}
+
+@keyframes umrahReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Umrah Row */
+.umrah-row {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+/* Umrah Field - Premium Card Style */
+.umrah-field {
+    flex: 1;
+    min-width: 240px;
+    background: white;
+    padding: 18px 22px;
+    border-radius: 24px;
+    border: 1.5px solid rgba(153, 188, 168, 0.4);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
+}
+
+/* Highlighted Field - Special Umrah */
+.umrah-field-highlight {
+    background: linear-gradient(145deg, #ffffff, #f4fff4);
+    border: 1.5px solid rgba(12, 90, 42, 0.3);
+    position: relative;
+}
+
+.umrah-field-highlight::before {
+    content: '🕋';
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 20px;
+    opacity: 0.2;
+    color: #0c5a2a;
+}
+
+/* Premium Field - Gold Accent */
+.umrah-field-premium {
+    border-color: rgba(196, 154, 43, 0.3);
+}
+
+.umrah-field-premium .field-label {
+    color: #C49A2B !important;
+}
+
+/* Field Hover State */
+.umrah-field:hover {
+    border-color: #0c5a2a;
+    box-shadow: 
+        0 18px 30px -12px rgba(12, 90, 42, 0.25),
+        0 0 0 3px rgba(153, 188, 168, 0.15);
+    transform: translateY(-4px) scale(1.01);
+    background: white;
+}
+
+.umrah-field-premium:hover {
+    border-color: #C49A2B;
+    box-shadow: 
+        0 18px 30px -12px rgba(196, 154, 43, 0.25),
+        0 0 0 3px rgba(196, 154, 43, 0.1);
+}
+
+/* Field Focus State */
+.umrah-field:focus-within {
+    border-color: #0c5a2a;
+    border-width: 2px;
+    box-shadow: 
+        0 0 0 5px rgba(12, 90, 42, 0.08),
+        0 12px 24px -10px rgba(12, 90, 42, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Field Label */
+.umrah-field .field-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #0c5a2a;
+    margin-bottom: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+}
+
+.label-icon {
+    font-size: 16px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* Input Wrapper */
+.umrah-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Umrah Select Dropdown */
+.umrah-select {
+    width: 100%;
+    padding: 12px 0;
+    padding-right: 30px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0c5a2a;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230c5a2a'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+    background-size: 22px;
+    transition: all 0.3s ease;
+}
+
+.umrah-select:hover {
+    background-position: right 5px center;
+    color: #063a1d;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23063a1d'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+}
+
+.umrah-select option {
+    padding: 12px;
+    font-weight: 500;
+}
+
+/* Umrah Date Input */
+.umrah-date-input {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0c5a2a;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.umrah-date-input::-webkit-calendar-picker-indicator {
+    background: transparent;
+    color: #0c5a2a;
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(95deg);
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+.umrah-date-input:hover::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Field Helper Text */
+.umrah-field .field-helper {
+    margin: 12px 0 0 0;
+    font-size: 10px;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.helper-badge {
+    background: rgba(153, 188, 168, 0.15);
+    padding: 4px 10px;
+    border-radius: 30px;
+    color: #0c5a2a;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.umrah-field:hover .field-helper {
+    color: #0c5a2a;
+    opacity: 1;
+    letter-spacing: 1.5px;
+}
+
+/* ============ QUICK FILTER CHIPS ============ */
+/* Inspired by Travelinks.pk */
+
+.umrah-quick-filters {
+    margin: 20px 0 15px;
+    padding: 18px 20px;
+    background: #e6eee9;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    animation: slideUpFade 0.5s 0.4s both;
+}
+
+.quick-filter-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #0c5a2a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: white;
+    padding: 6px 16px;
+    border-radius: 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.quick-filter-chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-chip {
+    background: white;
+    color: #0c5a2a;
+    padding: 8px 18px;
+    border-radius: 40px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(12, 90, 42, 0.15);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.filter-chip:hover {
+    background: #0c5a2a;
+    color: white;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 16px rgba(12, 90, 42, 0.25);
+    border-color: #0c5a2a;
+}
+
+.filter-chip:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* ============ HOTEL PREFERENCES ============ */
+/* Inspired by Ibneyousuf.com */
+
+.umrah-hotel-preferences {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    padding: 20px 25px;
+    background: white;
+    border-radius: 20px;
+    border: 1px solid rgba(153, 188, 168, 0.3);
+    flex-wrap: wrap;
+    animation: slideUpFade 0.5s 0.6s both;
+}
+
+.preference-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.preference-title {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0c5a2a;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.preference-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: #0c5a2a;
+    border-radius: 2px;
+}
+
+.preference-options {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Custom Radio Buttons */
+.radio-option, .checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #2c3e50;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+    padding-left: 28px;
+}
+
+.radio-option input, .checkbox-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.radio-custom {
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #99bca8;
+    background: white;
+    transition: all 0.2s ease;
+}
+
+.radio-option:hover .radio-custom {
+    border-color: #0c5a2a;
+    transform: scale(1.1);
+}
+
+.radio-option input:checked ~ .radio-custom {
+    border-color: #0c5a2a;
+    background: #0c5a2a;
+    box-shadow: inset 0 0 0 4px white;
+}
+
+/* Custom Checkbox */
+.checkbox-custom {
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 5px;
+    border: 2px solid #99bca8;
+    background: white;
+    transition: all 0.2s ease;
+}
+
+.checkbox-option:hover .checkbox-custom {
+    border-color: #0c5a2a;
+    transform: scale(1.1);
+}
+
+.checkbox-option input:checked ~ .checkbox-custom {
+    background: #0c5a2a;
+    border-color: #0c5a2a;
+}
+
+.checkbox-option input:checked ~ .checkbox-custom::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+}
+
+/* ============ ANIMATIONS ============ */
+
+@keyframes slideUpFade {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Staggered Field Animations */
+.umrah-row:first-child .umrah-field {
+    animation: slideInField 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    opacity: 0;
+}
+
+.umrah-row:first-child .umrah-field:nth-child(1) { animation-delay: 0.1s; }
+.umrah-row:first-child .umrah-field:nth-child(2) { animation-delay: 0.2s; }
+.umrah-row:first-child .umrah-field:nth-child(3) { animation-delay: 0.3s; }
+
+.umrah-row:last-child .umrah-field {
+    animation: slideInField 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    opacity: 0;
+}
+
+.umrah-row:last-child .umrah-field:nth-child(1) { animation-delay: 0.4s; }
+.umrah-row:last-child .umrah-field:nth-child(2) { animation-delay: 0.5s; }
+.umrah-row:last-child .umrah-field:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes slideInField {
+    0% {
+        opacity: 0;
+        transform: translateX(-15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ============ RESPONSIVE DESIGN ============ */
+
+@media (max-width: 992px) {
+    .umrah-search-fields {
+        padding: 25px 20px;
+    }
+    
+    .umrah-field {
+        min-width: calc(50% - 15px);
+    }
+    
+    .umrah-hotel-preferences {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .umrah-search-fields {
+        padding: 20px 18px;
+        border-radius: 24px;
+    }
+    
+    .umrah-row {
+        flex-direction: column;
+        gap: 18px;
+    }
+    
+    .umrah-field {
+        min-width: 100%;
+        width: 100%;
+    }
+    
+    .umrah-quick-filters {
+        border-radius: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 18px;
+    }
+    
+    .quick-filter-chips {
+        width: 100%;
+    }
+    
+    .filter-chip {
+        flex: 1;
+        text-align: center;
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+    
+    .preference-options {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .umrah-field .field-label {
+        font-size: 11px;
+    }
+    
+    .umrah-select, .umrah-date-input {
+        font-size: 14px;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .umrah-search-fields {
+        padding: 18px 15px;
+    }
+    
+    .filter-chip {
+        width: 100%;
+    }
+    
+    .quick-filter-label {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .umrah-search-fields {
+        background: linear-gradient(145deg, #1a2a1a, #1e331e);
+        border-color: rgba(153, 188, 168, 0.2);
+    }
+    
+    .umrah-field {
+        background: #253725;
+        border-color: rgba(153, 188, 168, 0.25);
+    }
+    
+    .umrah-select, .umrah-date-input {
+        color: #99bca8;
+    }
+    
+    .filter-chip {
+        background: #2a3a2a;
+        color: #b8d9c4;
+    }
+    
+    .umrah-hotel-preferences {
+        background: #1e2a1e;
+        border-color: rgba(153, 188, 168, 0.15);
+    }
+    
+    .radio-option, .checkbox-option {
+        color: #e0e0e0;
+    }
+}
+
+/* ============ UMRAH TAB STYLES END ============ */

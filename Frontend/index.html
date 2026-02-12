@@ -159,6 +159,246 @@
 
         </div>
 
+        <!-- ========== GROUPS TAB FIELDS - YAHAN SE ADD KARO ========== -->
+            <div class="groups-search-fields" id="groupsSearchFields" style="display: none;">
+                <div class="groups-row">
+                    <div class="field">
+                        <span>DESTINATION</span>
+                        <select id="groupDestination">
+                            <option value="">Select Destination</option>
+                            <option value="iraq">Iraq - Najaf, Karbala, Kadhimiya, Samarra</option>
+                            <option value="iran">Iran - Mashhad, Qom, Shiraz</option>
+                            <option value="syria">Syria - Damascus, Sayyidah Zaynab</option>
+                            <option value="umrah">Umrah - Makkah, Madinah</option>
+                        </select>
+                        <p>Ziyarat Cities</p>
+                    </div>
+                    
+                    <div class="field">
+                        <span>DEPARTURE</span>
+                        <input type="date" id="groupDepartureDate">
+                        <p>Select Departure Date</p>
+                    </div>
+                    
+                    <div class="field">
+                        <span>DURATION</span>
+                        <select id="groupDuration">
+                            <option value="7">7 Days / 6 Nights</option>
+                            <option value="10">10 Days / 9 Nights</option>
+                            <option value="14">14 Days / 13 Nights</option>
+                            <option value="21">21 Days / 20 Nights</option>
+                        </select>
+                        <p>Package Length</p>
+                    </div>
+                </div>
+                
+                <div class="groups-row">
+                    <div class="field">
+                        <span>TRAVELERS</span>
+                        <select id="groupTravelers">
+                            <option value="1">1 Person</option>
+                            <option value="2">2 Persons</option>
+                            <option value="3">3 Persons</option>
+                            <option value="4">4 Persons</option>
+                            <option value="5">5 Persons</option>
+                            <option value="6">6+ Persons (Family)</option>
+                        </select>
+                        <p>Number of Pilgrims</p>
+                    </div>
+                    
+                    <div class="field">
+                        <span>HOTEL RATING</span>
+                        <select id="groupHotelRating">
+                            <option value="3">⭐⭐⭐ 3 Star</option>
+                            <option value="4">⭐⭐⭐⭐ 4 Star</option>
+                            <option value="5">⭐⭐⭐⭐⭐ 5 Star</option>
+                            <option value="luxury">Luxury</option>
+                        </select>
+                        <p>Accommodation</p>
+                    </div>
+                    
+                    <div class="field">
+                        <span>PACKAGE TYPE</span>
+                        <select id="groupPackageType">
+                            <option value="economy">Economy</option>
+                            <option value="standard">Standard</option>
+                            <option value="premium">Premium</option>
+                            <option value="vip">VIP</option>
+                        </select>
+                        <p>Service Class</p>
+                    </div>
+                </div>
+            </div>
+            <!-- ========== GROUPS TAB FIELDS END ========== -->
+
+                        <div class="umrah-search-fields" id="umrahSearchFields" style="display: none;">
+                
+                <!-- Row 1: Destination + Departure + Duration -->
+                <div class="umrah-row">
+                    <div class="umrah-field umrah-field-highlight">
+                        <span class="field-label">
+                            <span class="label-icon">🕋</span> DESTINATION
+                        </span>
+                        <div class="umrah-input-wrapper">
+                            <select id="umrahDestination" class="umrah-select">
+                                <option value="" disabled selected>Select Holy Destination</option>
+                                <option value="umrah-only">Umrah Only - Makkah + Madinah</option>
+                                <option value="umrah-ziyarat">Umrah + Ziyarat - Makkah, Madinah, Jeddah, Taif</option>
+                                <option value="umrah-extended">Extended Umrah - 21 Days Special</option>
+                                <option value="ramadan-umrah">Ramadan Umrah - Last 10 Days</option>
+                                <option value="makkah-only">Makkah Only - VIP Package</option>
+                                <option value="madinah-only">Madinah Only - 40 Salat</option>
+                            </select>
+                        </div>
+                        <p class="field-helper">
+                            <span class="helper-badge">Haram Distance</span>
+                            <span class="helper-badge">Shuttle Service</span>
+                        </p>
+                    </div>
+
+                    <div class="umrah-field">
+                        <span class="field-label">
+                            <span class="label-icon">📅</span> DEPARTURE
+                        </span>
+                        <div class="umrah-input-wrapper">
+                            <input type="date" id="umrahDepartureDate" class="umrah-date-input">
+                        </div>
+                        <p class="field-helper">Select Departure Date</p>
+                    </div>
+
+                    <div class="umrah-field">
+                        <span class="field-label">
+                            <span class="label-icon">⏳</span> DURATION
+                        </span>
+                        <div class="umrah-input-wrapper">
+                            <select id="umrahDuration" class="umrah-select">
+                                <option value="" disabled selected>Select Package Length</option>
+                                <option value="7">7 Days / 6 Nights - Quick Umrah</option>
+                                <option value="10">10 Days / 9 Nights - Standard</option>
+                                <option value="14">14 Days / 13 Nights - Comfort</option>
+                                <option value="21">21 Days / 20 Nights - Extended</option>
+                                <option value="30">30 Days / 29 Nights - Monthly</option>
+                            </select>
+                        </div>
+                        <p class="field-helper">ZIYARAT CITIES • PACKAGE LENGTH</p>
+                    </div>
+                </div>
+
+                <!-- Row 2: Travelers + Hotel Rating + Package Type -->
+                <div class="umrah-row">
+                    <div class="umrah-field">
+                        <span class="field-label">
+                            <span class="label-icon">👥</span> TRAVELERS
+                        </span>
+                        <div class="umrah-input-wrapper">
+                            <select id="umrahTravelers" class="umrah-select">
+                                <option value="" disabled selected>Select Pilgrims</option>
+                                <option value="1">1 Person - Solo Pilgrim</option>
+                                <option value="2">2 Persons - Couple</option>
+                                <option value="3">3 Persons - Family</option>
+                                <option value="4">4 Persons - Group</option>
+                                <option value="5">5 Persons - Small Group</option>
+                                <option value="6-10">6-10 Persons - Family Group</option>
+                                <option value="11+">11+ Persons - Group Booking</option>
+                            </select>
+                        </div>
+                        <p class="field-helper">NUMBER OF PILGRIMS</p>
+                    </div>
+
+                    <div class="umrah-field">
+                        <span class="field-label">
+                            <span class="label-icon">🏨</span> HOTEL RATING
+                        </span>
+                        <div class="umrah-input-wrapper">
+                            <select id="umrahHotelRating" class="umrah-select">
+                                <option value="" disabled selected>Select Hotel Category</option>
+                                <option value="3">⭐⭐⭐ 3 Star - Economy</option>
+                                <option value="4">⭐⭐⭐⭐ 4 Star - Comfort</option>
+                                <option value="5">⭐⭐⭐⭐⭐ 5 Star - Premium</option>
+                                <option value="vip">👑 VIP - 5 Star Deluxe</option>
+                                <option value="executive">🏆 Executive Suite</option>
+                            </select>
+                        </div>
+                        <p class="field-helper">ACCOMMODATION • HOTEL CLASS</p>
+                    </div>
+
+                    <div class="umrah-field umrah-field-premium">
+                        <span class="field-label">
+                            <span class="label-icon">✨</span> PACKAGE TYPE
+                        </span>
+                        <div class="umrah-input-wrapper">
+                            <select id="umrahPackageType" class="umrah-select">
+                                <option value="" disabled selected>Select Service Class</option>
+                                <option value="economy">Economy - Budget Friendly</option>
+                                <option value="standard">Standard - Comfort</option>
+                                <option value="premium">Premium - Executive</option>
+                                <option value="vip">VIP - Royal Service</option>
+                                <option value="business">Business Class - Fast Track</option>
+                            </select>
+                        </div>
+                        <p class="field-helper">SERVICE CLASS • AMENITIES</p>
+                    </div>
+                </div>
+
+                <!-- Row 3: Quick Filters - Inspired by Travelinks.pk -->
+                <div class="umrah-quick-filters">
+                    <span class="quick-filter-label">Popular Umrah Packages:</span>
+                    <div class="quick-filter-chips">
+                        <span class="filter-chip" data-filter="7">7 Days Economy</span>
+                        <span class="filter-chip" data-filter="14">14 Days Standard</span>
+                        <span class="filter-chip" data-filter="21">21 Days Premium</span>
+                        <span class="filter-chip" data-filter="ramadan">🌙 Ramadan Special</span>
+                        <span class="filter-chip" data-filter="vip">👑 5 Star VIP</span>
+                        <span class="filter-chip" data-filter="family">👪 Family Package</span>
+                    </div>
+                </div>
+
+                <!-- Row 4: Hotel Preferences - Inspired by Ibneyousuf.com -->
+                <div class="umrah-hotel-preferences">
+                    <div class="preference-group">
+                        <span class="preference-title">Hotel Distance to Haram:</span>
+                        <div class="preference-options">
+                            <label class="radio-option">
+                                <input type="radio" name="hotelDistance" value="walking" checked>
+                                <span class="radio-custom"></span>
+                                Walking Distance (0-200m)
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="hotelDistance" value="shuttle">
+                                <span class="radio-custom"></span>
+                                Shuttle (200-800m)
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="hotelDistance" value="any">
+                                <span class="radio-custom"></span>
+                                Any Distance
+                            </label>
+                        </div>
+                    </div>
+                    <div class="preference-group">
+                        <span class="preference-title">Meal Plan:</span>
+                        <div class="preference-options">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="mealBreakfast">
+                                <span class="checkbox-custom"></span>
+                                Breakfast Included
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="mealDinner">
+                                <span class="checkbox-custom"></span>
+                                Half Board (B+D)
+                            </label>
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="mealFull">
+                                <span class="checkbox-custom"></span>
+                                Full Board
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ========== UMRAH TAB FIELDS END ========== -->
+
         <button class="search-btn" id="searchBtn">Show Fare</button>
 
     </div>
